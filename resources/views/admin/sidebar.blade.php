@@ -12,6 +12,27 @@
                     </a>
                 </li>
             </ul>
+            <ul class="nav" role="tablist">
+                <li role="presentation">
+                    <a href="{{ route('students.index') }}">
+                        Students
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav" role="tablist">
+                <li role="presentation">
+                    <a href="{{ route('courses.index') }}">
+                        Courses
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav" role="tablist">
+                <li role="presentation">
+                    <a href="{{ route('departments.index') }}">
+                        Departments
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
