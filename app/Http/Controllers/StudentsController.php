@@ -91,8 +91,9 @@ class StudentsController extends Controller
     public function edit($id)
     {
         $student = Student::findOrFail($id);
+        $courses = Course::get()->pluck('course_code', 'id');
 
-        return view('admin.students.edit', compact('student'));
+        return view('admin.students.edit', compact('student'))->with('courses', $courses);
     }
 
     /**

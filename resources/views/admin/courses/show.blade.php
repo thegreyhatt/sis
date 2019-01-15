@@ -40,6 +40,13 @@
 
                     </div>
                 </div>
+                <table class="table table-responsive">
+                    @foreach ($students as $student)
+                        <tr>
+                            <td>{{ $student['first_name'] }}</td>
+                        </tr>
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>

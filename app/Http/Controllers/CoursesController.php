@@ -75,7 +75,13 @@ class CoursesController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        return view('admin.courses.show', compact('course'));
+        $students = Course::join('students', 'courses.id', '=', 'students.course_id')
+            ->where('courses.id', $id)
+            ->get();
+
+        // return $students;
+
+        return view('admin.courses.show', compact('course'))->with('students', $students);
     }
 
     /**
