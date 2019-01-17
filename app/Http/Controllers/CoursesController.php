@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Course, App\Department;
+use App\Course, App\Department, App\Student;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
@@ -75,9 +75,15 @@ class CoursesController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        $students = Course::join('students', 'courses.id', '=', 'students.course_id')
-            ->where('courses.id', $id)
+        // $students = Course::join('students', 'courses.id', '=', 'students.course_id')
+        //     ->where('courses.id', $id)
+        //     ->get();
+
+        $students = Student::with('course')
+            ->where('course_id', $id)
             ->get();
+
+        // return $students;
 
         // return $students;
 

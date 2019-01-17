@@ -27,5 +27,9 @@ class Student extends Model
      */
     protected $fillable = ['id_number', 'first_name', 'last_name', 'gender', 'course_id'];
 
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
+    }
     
 }

@@ -27,5 +27,13 @@ class Course extends Model
      */
     protected $fillable = ['course_code', 'course_description', 'department_id'];
 
-    
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
+    }
+
+    public function students()
+    {
+        return $this->hasMany('App\Student');
+    }
 }

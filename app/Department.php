@@ -27,5 +27,9 @@ class Department extends Model
      */
     protected $fillable = ['short_code', 'name'];
 
-    
+    public function courses()
+    {
+        return $this->hasMany('App\Course');
+    }
+
 }

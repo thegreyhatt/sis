@@ -40,6 +40,29 @@
 
                     </div>
                 </div>
+                <table class="table table-responsive">
+                    @foreach ($department->courses as $course)
+                            {{-- <td>{{ $course->course_code }} --}}
+                                {{-- <ul> --}}
+                                    @foreach ($course->students as $student)
+                                    <tr>
+                                        <td>
+                                            {{ $student->first_name }}
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                {{-- </ul> --}}
+                            {{-- </td> --}}
+                    @endforeach
+
+                   {{--  @foreach ($department->courses as $course)
+                            @foreach ($course->students as $student)
+                        <tr>
+                                <td>{{ $student->first_name }}</td>
+                        </tr>
+                            @endforeach
+                    @endforeach --}}
+                </table>
             </div>
         </div>
     </div>

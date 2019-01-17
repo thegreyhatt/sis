@@ -41,9 +41,18 @@
                     </div>
                 </div>
                 <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
                     @foreach ($students as $student)
                         <tr>
-                            <td>{{ $student['first_name'] }}</td>
+                            <td>{{ $student->course->course_code }}</td>
+                            <td>{{ $student->id_number }}</td>
+                            <td>{{ $student->last_name.', '.$student->first_name }}</td>
                         </tr>
                     @endforeach
                 </table>

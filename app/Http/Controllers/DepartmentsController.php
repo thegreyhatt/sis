@@ -72,6 +72,7 @@ class DepartmentsController extends Controller
     {
         $department = Department::findOrFail($id);
 
+        // return $department;
         return view('admin.departments.show', compact('department'));
     }
 
