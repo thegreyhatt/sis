@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
     <div class="container">
         <div class="row">
             @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Student {{ $student->id }}</div>
-                    <div class="card-body">
+            <div class="col-md-9 col-md-offset-1">
+                <div class="box">
+                    <div class="box-header">Student <b>{{ $student->full_name }}</b></div>
+                    <div class="box-body">
 
                         <a href="{{ url('/admin/students') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <a href="{{ url('/admin/students/' . $student->id . '/edit') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

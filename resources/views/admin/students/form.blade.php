@@ -19,9 +19,8 @@
     {!! $errors->first('gender', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('course_id') ? 'has-error' : ''}}">
-    {!! Form::label('course_id', 'Course Id', ['class' => 'control-label']) !!}
-    {{-- {!! Form::number('course_id', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!} --}}
-    {!! Form::select('course_id', $courses, null, ['class' => 'form-control']) !!}
+    {!! Form::label('course_id', 'Course', ['class' => 'control-label']) !!}
+    {!! Form::select('course_id', $courses, null, ['class' => 'form-control', 'id' => 'courses']) !!}
     {!! $errors->first('course_id', '<p class="help-block">:message</p>') !!}
 </div>
 

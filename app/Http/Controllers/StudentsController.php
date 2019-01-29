@@ -56,10 +56,10 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'id_number' => 'required',
-			'first_name' => 'required',
-			'last_name' => 'required'
-		]);
+            'id_number' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ]);
         $requestData = $request->all();
         
         Student::create($requestData);
@@ -107,10 +107,10 @@ class StudentsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'id_number' => 'required',
-			'first_name' => 'required',
-			'last_name' => 'required'
-		]);
+            'id_number' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ]);
         $requestData = $request->all();
         
         $student = Student::findOrFail($id);
@@ -131,5 +131,23 @@ class StudentsController extends Controller
         Student::destroy($id);
 
         return redirect('admin/students')->with('flash_message', 'Student deleted!');
+    }
+
+    public function list()
+    {
+        $students = Student::get();
+
+        $return_array = [];
+
+        foreach($students as $student) {
+            $return_array[] = [
+                'id' => $student->id,
+                'id_number' => $student->id_number,
+                'full_name' => $student->full_name,
+                'gender' => ucfirst($student->gender),
+            ];
+        }
+
+        return response()->json(['data' => $return_array]);
     }
 }

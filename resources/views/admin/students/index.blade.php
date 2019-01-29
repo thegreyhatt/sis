@@ -1,20 +1,19 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
     <div class="container">
         <div class="row">
             @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Students</div>
-                    <div class="card-body">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
                         <a href="{{ url('/admin/students/create') }}" class="btn btn-success btn-sm" title="Add New Student">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        {!! Form::open(['method' => 'GET', 'url' => '/admin/students', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
-                        <div class="input-group">
+                      {{--   {!! Form::open(['method' => 'GET', 'url' => '/admin/students', 'class' => 'form-inline pull-right', 'role' => 'search'])  !!}
+                        <div class="form-group">
                             <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                             <span class="input-group-append">
                                 <button class="btn btn-secondary" type="submit">
@@ -22,43 +21,19 @@
                                 </button>
                             </span>
                         </div>
-                        {!! Form::close() !!}
-
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th>#</th><th>Id Number</th><th>First Name</th><th>Last Name</th><th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($students as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id_number }}</td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td>
-                                        <td>
-                                            <a href="{{ url('/admin/students/' . $item->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/students/' . $item->id . '/edit') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                            {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/admin/students', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
-                                                        'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-sm',
-                                                        'title' => 'Delete Student',
-                                                        'onclick'=>'return confirm("Confirm delete?")'
-                                                )) !!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <div class="pagination-wrapper"> {!! $students->appends(['search' => Request::get('search')])->render() !!} </div>
+                        {!! Form::close() !!} --}}
+                        
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table" id="students">
+                                 
+                                    </table>
+                                    {{-- <div class="pagination-wrapper"> {!! $students->appends(['search' => Request::get('search')])->render() !!} </div> --}}
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -66,4 +41,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        $('#students').DataTable(
+            {
+                ajax: '{{ route('students.list') }}',
+                pageLength: 50,
+                // scrollX: true,
+                columns :[
+                    {data: 'id_number', title: 'ID Number'},
+                    {data: 'full_name', title: 'Student Name'},
+                    {data: 'gender', title: 'Gender'},
+                    {data: 'id', title: 'Edit', 'mRender': function(data){
+                            return '<a href="students/'+data+'/edit"> <i class="fa fa-edit fa-lg text-muted"></i> </a>'
+                        }
+                    },
+                ]
+            }
+        );
+    </script>
 @endsection

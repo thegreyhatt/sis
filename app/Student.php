@@ -31,5 +31,15 @@ class Student extends Model
     {
         return $this->belongsTo('App\Course');
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->last_name.', '.$this->first_name;
+    }
+
+    public function getFullNameAndIdAttribute()
+    {
+        return  $this->id_number.' - '.$this->last_name.', '.$this->first_name;
+    }
     
 }

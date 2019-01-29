@@ -1,17 +1,15 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
     <div class="container">
         <div class="row">
             @include('admin.sidebar')
 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Edit Student #{{ $student->id }}</div>
-                    <div class="card-body">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="box box-success">
+                    <div class="box-header">Edit Student {{ $student->full_name }}</div>
+                    <div class="box-body">
                         <a href="{{ url('/admin/students') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -24,7 +22,7 @@
                         {!! Form::model($student, [
                             'method' => 'PATCH',
                             'url' => ['/admin/students', $student->id],
-                            'class' => 'form-horizontal',
+                            'class' => '',
                             'files' => true
                         ]) !!}
 

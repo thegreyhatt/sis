@@ -10,10 +10,43 @@
 @endsection
 
 @section('content')
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-solid box-success">
+			<div class="box-header with-border">
+				<div class="box-title">Students</div>
+			</div>
+			<div class="box-body">
+				<div class="chart" style="height: 300px;" >
+					<canvas id="pieChart" style="height: 100%;"></canvas>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+	var ctx = document.getElementById("pieChart").getContext('2d');
+	var pieChart = new Chart(ctx,{
+	    type: 'pie',
+	    data: {
+			datasets: [{
+		        data: [
+			        {{ $male }},
+			        {{ $female }}
+			        ],
+			    backgroundColor: ['#a4ea81','#75aaff'],
+		    }],
+
+		    // These labels appear in the legend and in the tooltips when hovering different arcs
+		    labels: [
+		        'Male',
+		        'Female',
+		    ]
+	    },
+	    // options: options
+	});
+</script>
 @endsection

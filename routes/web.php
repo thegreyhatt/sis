@@ -16,7 +16,14 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function(){
+	Route::get('dashboard', 'HomeController@dashboard')->name('dashboard');
+
 	Route::resource('students', 'StudentsController');
+
 	Route::resource('courses', 'CoursesController');
 	Route::resource('departments', 'DepartmentsController');
+});
+
+Route::group(['prefix' => 'raw-json-datas'], function(){
+	Route::get('students-list', 'StudentsController@list')->name('students.list');
 });
